@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+    <title>box shadow</title>
+    <style>
+        body {
+            background-color: seagreen;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        #box1 {
+            width: 12rem;
+            height: 12rem;
+            margin: 0 auto;
+            padding: 1rem;
+            background: rgba(200,200,200,1);
+        }
+
+        #box2 {
+            height: 100%;
+            width: 100%;
+            background: white;
+        }
+
+        #box3 {
+            width: 12rem;
+            height: 12rem;
+            margin: 0 auto;
+            padding: 1rem;
+            background: rgba(200,200,200,1);
+        }
+
+        #box4 {
+            height: 100%;
+            width: 100%;
+            background: rgb(82, 207, 235);
+        }
+		#box1, #box3 {
+			background: linear-gradient(rgb(240,240,240) 0%, rgb(255,255,255) 10%, white);
+		}
+		#box4 {
+			background: linear-gradient(rgb(82, 207, 235) 0%, rgb(66, 162, 188) 100%);
+		}
+		#box1, #box2, #box3, #box4{
+			border-radius: 2px;
+		}
+		#box1, #box3 { 
+			box-shadow: inset 0px -4px 1px rgba(0, 0, 0, 0.5), 0px 3px 1px rgba(0, 0, 0, 0.5), inset 0px 1px 1px white, 0px 0px 1px black;
+		}
+		#box2 { 
+			box-shadow: inset 0px 4px 1px rgba(0, 0, 0, 0.1), inset 0px 1px 5px rgba(0, 0, 0, 0.1);; 
+		}
+		#box4{
+			box-shadow: 0px 1px 5px rgba(255, 255, 255, 0.2);
+		}
+		* { 
+			box-sizing: border-box; 
+		}
+		#box1 {
+		    width: 250px;
+		    height: 80px;
+		    padding: 10px 10px 10px 10px;
+		    position: relative;
+		}
+		#box3 {
+		    width: 45px;
+		    height: 45px;
+		    padding: 4px 4px 6px 4px;
+		    border-radius: 100%;
+		    position: relative;
+		    left: 115px;
+		    top: -80px;
+		}
+		#box4 {
+			border-radius: 100%;
+		}
+		#box4:hover {
+		    background: rgb(82, 207, 235);
+		    transition: ease-out 0.3s;
+		    cursor: pointer;
+		}
+		#box4:active {
+		    box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3), inset 0px 3px 4px rgba(0,0,0,0.3);
+		}
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <div id="box2">
+        </div>
+    </div>
+    <br>
+    <div id="box3">
+         <div id="box4">
+         </div>
+    </div>
+</body>
+</html>
