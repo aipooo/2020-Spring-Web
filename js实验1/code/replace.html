@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>替换</title>
+<script type="text/javascript">
+   function replace(){
+       var x=document.getElementById("a1");
+       var y=document.getElementById("a2");
+       if(y.value=="")
+           alert("输入不能为空！");
+       else
+           x.innerHTML=y.value;
+    }
+</script>
+</head>
+<body>
+   <h1 id="a1">DOM 第一课</h1>
+   输入:<input id="a2" type="text"/>
+   <p><input type="button" onclick="replace()" value="click here"></p>
+</body>
+</html>

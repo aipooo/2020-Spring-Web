@@ -1,0 +1,33 @@
+<!DOCTYPE  html>
+<html  lang="zh-cn">
+ <head>
+   <title>编程器</title>
+   <script>
+		function run(){
+			var x = document.getElementById("x").value;
+			var y = document.getElementById("y").value;
+			var code = document.getElementById("code").value;
+			var program = new Function("x", "y", code);
+			program(x, y);
+		}
+   </script>
+ </head>
+ <body>
+    <h1>编程器</h1>
+	<p>
+		<label style="padding-left: 48px;">x:</label>
+		<input type="text" id="x"/>
+	</p>
+	<p>
+		<label style="padding-left: 48px;">y:</label>
+		<input type="text" id="y"/> 
+	</p>
+	<p>
+		<label style="vertical-align: top;">program:</label>
+		<textarea rows="10" cols="30" id="code"></textarea> 
+	</p>
+	<p>
+		<button style="margin-left: 72px;" onclick="run()">运行</button>
+	</p>
+ </body>
+</html>

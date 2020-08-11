@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slider</title>
+        <style>
+            #mouse {
+                height: 300px;
+                width: 770px;
+                overflow: hidden;
+                position: relative;
+                margin: auto;
+            }
+            #images {
+                white-space: nowrap;
+				position: relative;
+            }
+            .image {
+                margin-right: -8px;
+            }
+            .arrow {
+                width: 35px;
+                height: 80px;
+                top: 110px;
+                position: absolute;
+                background: url("images/arrows-30.png");
+            }
+            #arrow1 {
+				left: 10px;
+			}
+            #arrow2 {
+                right: 10px;
+                background-position-y: 80px;
+            }
+			#points {
+			    position: absolute;
+			    top: 265px;
+			    right: 65px;
+			    white-space: nowrap;
+			}
+			.point {
+				width: 12px;
+				height: 12px;
+			    display: inline-block;
+			    background: url("images/navigator.png") no-repeat;
+			    margin-right: -5px;
+			}
+			#point1 {
+				background-position-y: -24px;
+			}
+        </style>
+    </head>
+    <body>
+        <div id="mouse" onmousemove="movearrow(0)" onmouseout="movearrow(1)">
+            <div id="images">
+                <img class="image" id="image1" src="images/img1.jpg">
+                <img class="image" id="image2" src="images/img2.jpg">
+                <img class="image" id="image3" src="images/img3.jpg">
+                <img class="image" id="image4" src="images/img1.jpg">
+            </div>
+            <div id="points">
+                <div class="point" id="point1" onclick="onclickPoint(0)"></div>
+                <div class="point" id="point2" onclick="onclickPoint(1)"></div>
+                <div class="point" id="point3" onclick="onclickPoint(2)"></div>
+            </div>
+            <div id="arrows">
+                <div id="arrow1" class="arrow" onclick="arrowonclick(0)"></div>
+                <div id="arrow2" class="arrow" onclick="arrowonclick(1)"></div>
+            </div>
+        </div>
+		<script>
+		    var position = 0;
+		    var count = 0;
+		    var flag = true;
+		    var points = document.querySelectorAll(".point");
+		    var arrows = document.querySelectorAll(".arrow");
+		    var images = document.querySelector("#images")
+		    function moveImg(){ 
+		        if(flag){ 
+		            position = position - 7.7;
+		            count++;
+		            if(position <= -2310)
+		                position = 0;
+		            images.style.left = position + "px";
+		            if(position <= -2310)
+		                changePoint(0);
+		            else if(position <= -1540)
+		                changePoint(2);
+		            else if(position <= -770)
+		                changePoint(1);
+		            else if(position <= 0)
+		                changePoint(0);
+		        }
+		        if(count < 100)
+		            setTimeout("moveImg()",20);
+		        else if(count == 100){
+		            count = 0;
+		            setTimeout("moveImg()",2000);
+		        }
+		    }
+		    function movearrow(i){ 
+		        if(i == 0){
+		            flag = false;
+		            arrows[0].style.display = "block";
+		            arrows[1].style.display = "block";
+		        }
+		        else{
+		            flag=true;
+		            arrows[0].style.display = "none";
+		            arrows[1].style.display = "none";
+		        }
+		    }
+		    function arrowonclick(i){ 
+		        if(i == 0){
+		            if(position <= -2310)
+		                position = -1540;
+		            else if(position <= -1540)
+		                position = -770;
+		            else if(position <= -770)
+		                position = 0;
+		            else if(position <= 0)
+		                position = -1540;
+		        }
+		        else if(i == 1){
+		            if(position <= -2310)
+		                position = -770;
+		            else if(position <= -1540)
+		                position = 0;
+		            else if(position <= -770)
+		                position = -1540;
+		            else if(position <= 0)
+		                position = -770;
+		        }
+		        count = 0;
+		        images.style.left = position + "px";
+		        if(position <= -2310)
+		            changePoint(0);
+		        else if(position <= -1540)
+		            changePoint(2);
+		        else if(position <= -770)
+		            changePoint(1);
+		        else if(position <= 0)
+		            changePoint(0);
+		    }
+		    function onclickPoint(i){
+		        if(i == 0)
+		            position = 0;
+		        else if(i == 1)
+		            position = -770;
+		        else 
+		            position = -1540;
+		        count = 0;
+		        images.style.left = position + "px";
+		        changePoint(i);
+		    }
+		    function changePoint(i){ 
+		        for(j = 0; j < 3; j++){
+		            if(i == j)
+		                points[j].style.backgroundPositionY = "-24px";
+		            else 
+		                points[j].style.backgroundPositionY = "0px";
+		        }
+		    }
+		    moveImg();
+		</script>	
+    </body>
+
+</html>
