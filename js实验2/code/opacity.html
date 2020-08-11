@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>背景变暗</title>
+<style>
+   input[type="text"] {width:140px}
+   #shadow {position:absolute;display:block;top:0;left:0;z-index:80;
+           background-color:gray;opacity:0.5;}
+   #hideShadow  {position:absolute;z-index:900;left:230px;top20px}
+</style>
+<script>
+    function showShadow(){
+       var shadow=document.getElementById("shadow");
+       shadow.style.width= ""+document.documentElement.scrollWidth+"px";
+       if(document.documentElement.clientHeight>document.documentElement.scrollHeight)
+          shadow.style.height=""+document.documentElement.clientHeight+"px";
+       else
+          shadow.style.height=""+document.documentElement.scrollHeight+"px";
+       shadow.style.display="block";
+       var showBtn =document.getElementById("show");
+       showBtn.style.display="inline-block";
+     }
+
+    function hideShadow(){
+       var shadow=document.getElementById("shadow");
+       shadow.style.display="none";
+       var showBtn =document.getElementById("show");
+       showBtn.style.display="none";
+    }
+  </script>
+</head>
+<body>
+  <input type="text">
+  <input id="showShadow" type='button' onClick='showShadow()' value='点击变暗'/>  
+  <input id="hideShadow" type='button' onClick='hideShadow()' value='点击变亮'/>
+  <div id="shadow">       
+  </div>
+  <script>
+     for(var i=0;i<36;i++){
+        document.write("<p>"+i+"</p>");
+     }
+  </script> 
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<title>计时器</title>
+		<style>
+			.time{
+				display: inline-block;
+				width: 3.6em;
+				text-align: right;
+				margin-right: 4px
+			}
+			#container, h1{
+				width: 20em;
+				margin: 10px auto;
+				text-align: center
+			}
+			.timer{
+				margin-top: 20px
+			}
+			.pressed{
+				background: yellow
+			}
+		</style>
+		<script>
+			const INIT = 0, START = 1, PAUSE = 2, STOP = 3; /* 状态 */
+			var timers = [];	/* 用于保存所有计时器（秒表）对象 */
+			/* 用于产生计时器对象的函数，textTime为用于显示时间的元素 */
+			function MyTimer(textTime){
+				this.startTime = 0; /* 起始时间 */
+				this.time = 0;      /* 当前时间 */
+				this.textTime = textTime;
+				this.state = INIT;
+			}
+			MyTimer.prototype.start = function(){
+				if (this.state == START)
+					return;
+				if (this.state == STOP)
+					this.time = 0;
+				this.state = START;
+			}
+			MyTimer.prototype.pause = function(){
+				this.state = PAUSE;
+			}
+			MyTimer.prototype.stop = function(){
+				this.time = 0;
+				this.state = STOP;
+			}
+			/* 设置当前时间this.time */
+			MyTimer.prototype.setTime = function(){
+				this.time += 0.01;
+			}
+			/* 显示秒(this.time - this.startTime) */
+			MyTimer.prototype.showTime = function(){
+				return this.time - this.startTime;
+			}
+		</script>
+	</head>
+	<body>
+		<h1>计时器</h1>
+		<div id="container">
+			<input type="button" class="add" value="增加计时器(秒表)" onclick="addTimer()">
+			<div class="timer s0" style="display:none"><span class="time">0.00</span>
+				<input type="button" class="start pressed" value="启动">
+				<input type="button" class="stop" value="停止">
+				<input type="button" class="pause" value="暂停">
+			</div>
+		</div>
+		<script>
+			/* 克隆一个新计时器元素(块级元素)，并且为它用MyTimer生成一个计时器对象timer，然后把这个对象保存到timers[]中，并调用bindClick的方法对计时器元素中的按钮绑定click事件 */
+			function addTimer(){
+				var sourceNode = document.getElementsByClassName("timer")[0];
+				var clonedNode = sourceNode.cloneNode(true);
+				clonedNode.style.display = "block";
+				var newTimer = new MyTimer(clonedNode);
+				timers.push(newTimer);
+				var index = timers.length + 1;
+				var timerSelector = ".timer.s" + index;   /* 计时器选择器 */
+				bindClick(clonedNode, newTimer, timerSelector);
+				clonedNode.setAttribute("class", "timer s" + index);
+				sourceNode.parentNode.appendChild(clonedNode);
+				newTimer.start();
+			}
+			/*timerSelector是用于选择一个计时器的选择器（包含三个按钮），被点击的按钮（类名为btnName）增加类pressed，其他的按钮则删除pressed */
+			function pressed(timerSelector, btnClass){
+				var timer_ele = document.querySelector(timerSelector);
+				if(btnClass == 'start'){
+					timer_ele.children[1].classList.add("pressed");
+					timer_ele.children[2].classList.remove("pressed");
+					timer_ele.children[3].classList.remove("pressed");
+				}
+				else if(btnClass == 'stop'){
+					timer_ele.children[1].classList.remove("pressed");
+					timer_ele.children[2].classList.add("pressed");
+					timer_ele.children[3].classList.remove("pressed");
+				}
+				else if(btnClass == 'pause'){
+					timer_ele.children[1].classList.remove("pressed");
+					timer_ele.children[2].classList.remove("pressed");
+					timer_ele.children[3].classList.add("pressed");
+				}
+			}
+
+			/* 参数：timerSelector为选择器，用于选出一个计时器；timer为用MyTimer()产生的对象
+			   功能：把选出的计数器的三个按钮的click事件绑定调用事件处理函数（利用闭包保存timer对象） */
+			function bindClick(Node, timer, timerSelector){
+				/* 返回函数中的timer利用了闭包 */
+				function stop(timer){
+					return function(){ timer.stop(); if (timer.state == STOP) pressed(timerSelector, "stop"); };
+				}
+				function start(timer){
+					return function(){ timer.start(); if (timer.state == START) pressed(timerSelector, "start"); };
+				}
+				function pause(timer){
+					return function(){ timer.pause(); if (timer.state == PAUSE) pressed(timerSelector, "pause"); };
+				}
+				/* 选出计数器三个按钮，并把click事件绑定调用上面函数所返回的函数（目的是利用闭包）*/
+				Node.children[1].addEventListener("click", start(timer), false);
+				Node.children[2].addEventListener("click", stop(timer), false);
+				Node.children[3].addEventListener("click", pause(timer), false);
+			}
+
+			/* 定时器: 每个timers[]中的计时器计算和显示时间 */
+			function timer(){
+				for(var i=0; i<timers.length; i++){
+					if(timers[i].state == START){
+						timers[i].setTime();
+						document.getElementsByClassName("time")[i+1].innerHTML = parseFloat(timers[i].showTime()).toFixed(2);
+					}
+				}
+				setTimeout(timer, 10);
+			}
+			timer();
+		</script>
+	</body>
+</html>

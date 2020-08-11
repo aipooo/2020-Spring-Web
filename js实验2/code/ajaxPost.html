@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AJAX-post</title>
+		<style>
+			p {font-size:20px}
+		</style>
+	</head>
+	<body>
+		<h1>Ajax-post</h1>
+		<p>id：<input id="t1" type="text"></p>
+		<p>姓名：<input id="t2" type="text" onblur="post()"></p>
+		<p><span id="t4"></span></p>
+		<script>
+			function post() {
+				var xmlhttp = new XMLHttpRequest();
+				var t1 = document.getElementById("t1");
+				var t2 = document.getElementById("t2");
+				var t4 = document.getElementById("t4");
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4) {
+						if (xmlhttp.status >= 200 && xmlhttp.status < 300 || xmlhttp.status >= 304)
+							t4.innerHTML = "修改成功！";
+						else
+							alert("error");
+					}
+				};
+				xmlhttp.open("post", "http://103.26.79.35:8080/jsp/post.jsp", true);
+				xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xmlhttp.send("id=" + t1.value + "&name=" + encodeURIComponent(t2.value));
+			}
+		</script>
+	</body>
+</html>

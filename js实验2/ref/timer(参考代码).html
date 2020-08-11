@@ -1,0 +1,94 @@
+<!DOCTYPE  html>
+<html lang="zh-cn">
+<head>
+<title>计时器</title>
+  <style> 
+  </style>
+  <script>
+     const INIT=0,START=1,PAUSE=2,STOP=3; /* 状态 */
+     var stopWatchs=[];   /* 用于保存所有计时器（秒表）对象 */
+     /* 用于产生计时器对象的函数，textTime为用于显示时间的元素 */ 
+     function MyStopWatch(textTime){
+        this.startTime = 0; /* 起始时间 */
+        this.time = 0;      /* 当前时间 */
+        this.textTime = textTime;
+          ...
+        };
+        this.state = INIT;
+     }
+
+     MyStopWatch.prototype.start = function(){
+         if(this.state == START)
+            return;
+         if(this.state == STOP)
+          ...        
+     };
+
+     MyStopWatch.prototype.pause=function(){
+
+     };
+
+     MyStopWatch.prototype.stop=function(){
+
+     };
+
+     /* 设置当前时间this.time */
+     MyStopWatch.prototype.setTime=function(){
+
+     }
+
+     /* 显示秒(this.time - this.startTime) */
+     MyStopWatch.prototype.showTime=function(){
+         
+     };     
+
+  </script>
+</head>
+<body>
+  <h1>计时器</h1>
+
+  <div id="container">
+     <input type="button" class="add" value="增加计时器(秒表)" onclick="addStopWatch()">
+     <div class="stopWatch s0" style="display:none"><span class="time">0.00</span>
+          <input type="button" class="start pressed" value="启动">
+          <input type="button" class="stop" value="停止">
+          <input type="button" class="pause" value="暂停">
+     </div>
+  </div>
+  <script>
+     /* 克隆一个新计时器元素(块级元素)，并且为它用MyStopWatch生成一个计时器对象stopWatch，然后把这个对象保存到stopWatchs[]中，并调用bindClick的方法对计时器元素中的按钮绑定click事件 */
+     function addStopWatch(){
+         ...
+         var stopWatchSelector = ".stopWatch.s" + index;   /* 计时器选择器 */
+         ...
+         bindClick(stopWatch,stopWatchSelector);
+         stopWatch.start();          
+     }
+     /* stopWatchSelector是用于选择一个计时器的选择器（包含三个按钮），被点击的按钮（类名为btnName）增加类pressed，其他的按钮则删除pressed */
+     function pressed(stopWatchSelector,btnClass){
+
+     }
+
+     /* 参数：stopWatchSelector为选择器，用于选出一个计时器；stopWatch为用MyStopWatch()产生的对象
+        功能：把选出的计数器的三个按钮的click事件绑定调用事件处理函数（利用闭包保存stopWatch对象） */
+     function bindClick(stopWatch,stopWatchSelector){
+       /* 返回函数中的stopWatch利用了闭包 */
+       function stop(stopWatch){
+          return function(){stopWatch.stop();if(stopWatch.state==STOP)pressed(stopWatchSelector,"stop");}; }
+       ...
+       /* 选出计数器三个按钮，并把click事件绑定调用上面函数所返回的函数（目的是利用闭包）*/
+       ...
+     }
+
+     stopWatchs[0]=null;
+     /* 定时器: 每个stopWatchs[]中的计时器计算和显示时间 */
+     function stopWatch(){
+        ...
+        setTimeout(stopWatch, 10);
+     }
+ 
+     setTimeout(stopWatch, 10);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rich Text Editing</title>
+		<style type="text/css">
+			.editable {
+				padding:10px;
+				width:400px;
+				height:200px;
+				border:solid 1px black;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="editable" id="richedit" contenteditable="true"></div><br>
+		<input type="button" value="斜体" onclick="italic()">
+		<input type="button" value="颜色" onclick="color()">
+		<input type="button" value="字号" onclick="fontSize()">
+		<input type="button" value="图像" onclick="image()">
+		<input type="button" value="链接" onclick="link()">
+		<input type="button" value="撤销" onclick="undo()">
+		<input type="button" value="代码" onclick="code()">
+		<script>
+			function italic() {
+				document.execCommand("italic", false, null);
+			}
+			function color() {
+				document.execCommand("foreColor", false, "red");
+			}
+			function fontSize() {
+				document.execCommand("fontSize", false, 7);
+			}
+			function image() {
+				document.execCommand("insertImage", false, "images/home.gif");
+			}
+			function link() {
+				document.execCommand("createLink", false, " ");
+			}
+			function undo() {
+				document.execCommand("undo", false, null);
+			}
+			function code() {
+				var richedit = document.getElementById("richedit");
+				alert(richedit.innerHTML);
+			}
+		</script>
+	</body>
+</html>
