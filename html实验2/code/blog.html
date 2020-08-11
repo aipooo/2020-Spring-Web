@@ -1,0 +1,72 @@
+<!DOCTYPE  html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<title>Blog Edit</title>
+		<style type="text/css">
+			*{font-size:20px;font-family:宋体}
+			input[type="text"],textarea {color:#B0B0B0}
+			[for="content"]{vertical-align:top;}
+			fieldset {width:800px;margin:20px auto;padding:20px;background-color:#FCFCFF;}
+			#content {width:700px;height:300px}
+		</style>
+	</head>
+	<body>
+		<form action="edit.jsp" method="post" enctype="application/x-www-form-urlencoded">
+			<fieldset>
+				<legend>修改博客</legend>
+				<label for="title">标题：</label>
+					<input id="title" name="title" type="text" value="输入博客标题" /><br /><br />
+				<label for="keywords">关键字：</label>
+					<input id="keywords" name="keywords" type="text" value="输入关键字" /><br /><br />
+				<label for="layout">布局：</label>
+					<input name="layout" value="layout1" type="radio"><img src="layout1.jpg" /></input>
+					<input name="layout" value="layout2" type="radio" checked="checked"><img src="layout2.jpg" /></input>
+					<input name="layout" value="layout3" type="radio"><img src="layout2.jpg" /></input><br /><br />
+				<label for="background">背景：</label>
+					<select name="background">
+						<option value="bk1">背景一</option>
+						<option value="bk2" selected="selected">背景二</option>
+						<option value="bk3">背景三</option>
+						<option value="bk4">背景四</option>
+					</select><br /><br />
+				<label for="group">适合群体：</label>
+					<input name="group" value="grp1" type="checkbox">学前班</input>
+					<input name="group" value="grp2" type="checkbox">小学生</input>
+					<input name="group" value="grp3" type="checkbox" checked="checked">中学生</input>
+					<input name="group" value="grp4" type="checkbox">成年人</input><br /><br />
+				<label for="content">内容：</label>
+					<textarea id="content" name="content">在这里输入博客内容</textarea><br /><br />
+				<input name="save" type="submit" value="保存" />
+				<input name="exit" type="submit" value="退出" />
+				<button name="reset" type="reset">复位</button>
+			</fieldset>
+		</form>
+		<script type="text/javascript">
+			function inputClick(target){
+				var value="";
+				if(target.id=="title")
+					value="输入博客标题";
+				if(target.id=="keywords")
+					value="输入关键字";
+				if(target.id=="content")
+					value="在这里输入博客内容";			
+				if(target.value==''){
+					target.style.color="#B0B0B0";
+					target.value=value;
+				}
+				else if(target.value==value){
+					target.style.color="#000000";
+					target.value="";
+				}
+			};
+			var f1=function(){inputClick(this);};
+			document.getElementById("title").onclick= f1;
+			document.getElementById("keywords").onclick= f1;
+			document.getElementById("content").onclick= f1;
+			document.getElementById("title").onblur= f1;
+			document.getElementById("keywords").onblur= f1;
+			document.getElementById("content").onblur= f1;
+		</script>
+	</body>
+</html>
