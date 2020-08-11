@@ -1,0 +1,128 @@
+<!DOCTYPE  html>
+<html lang="zh-cn">
+   <head>
+      <meta charset="utf-8"/>
+      <title>This is my title</title>
+	<style>
+		.leaf {
+			width:40px;
+			height:40px;
+			background: url(images/leaf.gif);
+			position: absolute;
+		}
+		#bk {
+			width:600px;
+			height:600px;
+			margin:0 auto;
+			padding:20px;
+			background: url(images/leaf_bk.jpg);
+			z-index: -1;
+		}
+		@keyframes myfirst {
+			0% {
+				opacity: 0.2;
+				transform: translateY(0px) rotate3d(0,1,0,45deg);
+			}
+			25% {
+				opacity: 1;
+				transform: translateY(150px) rotateX(90deg);
+			}
+			50% {
+				opacity: 0.5;
+				transform: translateY(300px) rotateY(180deg);
+			}
+			75% {
+				opacity: 1;
+				transform: translateY(450px) rotateX(270deg);
+			}
+			100% {
+				opacity: 0.9;
+				transform: translateY(600px) rotateY(360deg);
+			}
+		}
+		@keyframes mysecond {
+			0% {
+				opacity: 0.2;
+				transform: translateY(0px) rotate3d(0,1,0,45deg);
+			}
+			25% {
+				opacity: 0.5;
+				transform: translateY(150px) rotateX(90deg) rotateZ(90deg);
+			}
+			50% {
+				opacity: 1;
+				transform: translateY(300px) rotate3d(0, 1, 0, 90deg);
+			}
+			75% {
+				opacity: 0.6;
+				transform: translateY(450px) rotateZ(180deg);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(600px) ;
+			}
+		}
+		#d1 {
+			animation: myfirst infinite linear;
+			animation-duration: 4s;
+			left: 20%;
+		}
+		#d2 {
+			animation: mysecond infinite linear;
+			animation-duration: 3s;
+			left: 30%;
+		}
+		#d3 {
+			animation: myfirst infinite  linear;
+			animation-duration: 3s;
+			animation-delay: 1.2s;
+			left: 40%;
+		}
+		#d4 {
+			animation: mysecond infinite linear;
+			animation-duration: 3s;
+			animation-delay: 0.5s;
+			left: 50%;
+		}
+		#d5 {
+			animation: myfirst infinite linear;
+			animation-duration: 3s;
+			animation-delay: 0.5s;
+			left: 60%;
+		}
+		#d6 {
+			animation: mysecond infinite linear;
+			animation-duration: 2s;
+			animation-delay: 1.5;
+			left: 70%;
+		}
+		#d7 {
+			animation: myfirst infinite linear;
+			animation-duration: 4s;
+			animation-delay: 1.2s;
+			left: 80%;
+		}
+		#d8 {
+			animation: mysecond infinite linear;
+			animation-duration: 2s;
+			animation-delay: 1s;
+			left: 90%;
+		}
+	</style>
+   </head>
+   <body>
+    <div id="bk">
+      <div id="d1" class="leaf"></div>
+      <div id="d2" class="leaf"></div>
+      <div id="d3" class="leaf"></div>
+      <div id="d4" class="leaf"></div>
+      <div id="d5" class="leaf"></div>
+      <div id="d6" class="leaf"></div>
+      <div id="d7" class="leaf"></div>
+      <div id="d8" class="leaf"></div>
+    </div>
+    </body>
+</html>
+         
+
+                

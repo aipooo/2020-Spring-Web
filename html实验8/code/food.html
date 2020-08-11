@@ -1,0 +1,89 @@
+<!DOCTYPE  html>
+<html lang="zh-cn">
+   <head>
+      <meta charset="utf-8"/>
+      <title>This is my title</title>
+      <style>
+         #container {
+            width: 350px;
+            height: 560px;
+            background: rgb(240, 240, 240);
+            border: 1px solid rgb(240, 240, 240);
+            margin: auto;
+         }
+         #food {
+            width: 245px;
+            height: 245px;
+            background: white;
+            border: 1px solid white;
+            margin: 100px auto;
+            margin-left: 80px;
+            z-index: -1;
+         }
+         #title {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bolder;
+            margin-top: 30px;
+         }
+         #description {
+            text-indent: 2em;
+            font-family: 楷体;
+            margin-top: 30px;
+            font-size: 20px;
+			padding: 0px 30px;
+         }
+         .part {
+            background-image: url(images/food.jpg);
+            background-size: 220px 220px;
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+         }
+         #p1 {
+            background-position: 0px 0px;
+            animation: myfirst 2s linear;
+         }
+         #p2 {
+            background-position: 120px 0px;
+            animation: mysecond 2s linear;
+         }
+         #p3 {
+            background-position: 0px 120px;
+            animation: mythird 2s linear;
+         }
+         #p4 {
+            background-position: 120px 120px;
+            animation: myfourth 2s linear;
+         }
+         @keyframes myfirst{
+            0% { transform: translate(-50px, -50px); }
+            100% { transform: translate(0px, 0px); }
+         }
+         @keyframes mysecond{
+            0% { transform: translate(50px, -50px); }
+            100% { transform: translate(0px, 0px); }
+         }
+         @keyframes mythird{
+            0% {transform: translate(-50px, 50px); }
+            100% {transform: translate(0px, 0px); }
+            }
+         @keyframes myfourth{
+            0% { transform: translate(50px,50px); }
+            100% { transform: translate(0px,0px); }
+         }
+      </style>
+   </head>
+   <body>
+     <div id="container">
+        <div id="title">美食</div>
+        <div id="description">这是一款意大利牛肉卷，采用了熏牛肉、奶酪、酱进行烹制，色泽诱人，美味可口，欢迎大家前来品尝!</div>
+        <div id="food">
+           <div id="p1" class="part"></div>
+           <div id="p2" class="part"></div>
+           <div id="p3" class="part"></div>
+           <div id="p4" class="part"></div>
+        </div>
+     </div>
+    </body>
+</html>
